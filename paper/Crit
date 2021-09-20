@@ -1,0 +1,11 @@
+To define the problem
+Is the GPT-2 the best Haiku generater:
+
+NLP models:
+-GPT-2
+-Vanilla RNN
+
+Criteria of Differnece:
+-Time taken to train?
+-Output Cohesion from human perception
+-Strucutre Integity
