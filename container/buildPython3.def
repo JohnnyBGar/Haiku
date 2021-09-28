@@ -1,0 +1,41 @@
+Bootstrap: library
+From: ubuntu:18.04
+Stage: build
+
+%post
+apt update
+apt upgrade -y
+apt install software-properties-common -y
+add-apt-repository universe -y
+apt update
+apt install python3-pip -y
+pip3 install geopy
+python3 -m pip install --upgrade optspec
+
+#done with install..
+#Lets add some cool items
+
+BUILD_DATE=`date -R`
+echo "export BUILD_DATE=\"${BUILD_DATE}\"" >> $SINGULARITY_ENVIRONMENT
+
+%runscript
+    echo "This container was built on ${BUILD_DATE}"
+    echo "Usage:"
+    echo "singularity exec ${SINGULARITY_NAME} python3 [pythoncode.py] [inputs to code]"
+    echo " "
+    echo "To see what modules were installed type"
+    echo "singularity exec ${SINGULARITY_NAME} pip3 list"
+
+%labels
+    Author Dr. John Nehrbass
+    ClassName Cloud Computing
+    ClassID cs7380
+    StudentCount 43
+    TimesTaught 2
+    Year	Fall2021
+    
+%help
+This container uses ubuntu 18.04, python3,
+and includes the python3 modules:
+geopy and optspec
+
